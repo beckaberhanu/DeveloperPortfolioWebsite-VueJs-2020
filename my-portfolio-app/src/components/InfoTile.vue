@@ -6,9 +6,16 @@
   >
     <div
       slot-scope="el"
-      :class="['main-tile', { small: el.is.small, collapsed: collapsed }]"
+      :class="[
+        'main-tile',
+        {
+          InfoTileSmall: el.is.small,
+          collapsed: collapsed,
+          interacted: interacted,
+        },
+      ]"
     >
-      <!-- <div :class="['main-tile']"> -->
+      <a :id="anchor"></a>
       <div class="dash-border-image-box">
         <img :src="imageUrl" class="tile-image" />
       </div>
@@ -38,11 +45,7 @@
               :href="link.url"
               target="_blank"
             >
-              <object
-                :data="link.icon"
-                class="external-link-icon"
-                type=""
-              ></object>
+              <img :src="link.icon" class="external-link-icon" />
               <small class="external-link-name">{{ link.name }}</small>
             </a>
           </div>
@@ -61,6 +64,9 @@ import image3 from "../assets/Icons/arrow.svg";
 
 export default {
   name: "InfoTile",
+  props: {
+    anchor: String,
+  },
   components: {
     Responsive,
   },
@@ -80,11 +86,13 @@ export default {
         },
       ],
       collapsed: true,
+      interacted: false,
     };
   },
   methods: {
     expandTile: function() {
       this.collapsed = this.collapsed ? false : true;
+      this.interacted = true;
     },
   },
 };
@@ -98,10 +106,13 @@ export default {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   padding: 12px;
+  margin: 25px 0px;
 }
-.main-tile.small {
+.main-tile.InfoTileSmall {
   flex-direction: column;
   position: relative;
+  height: 270px;
+  overflow: hidden;
 }
 .dash-border-image-box {
   flex: 1;
@@ -114,9 +125,52 @@ export default {
   height: 280px;
   min-width: 280px;
 }
-.small .dash-border-image-box {
+.InfoTileSmall .dash-border-image-box {
+  flex: none;
   height: 200px;
   width: auto;
+}
+.InfoTileSmall:not(.collapsed) .dash-border-image-box {
+  height: 0;
+  opacity: 0;
+  padding: 0;
+  border-width: 0px;
+  animation: expandAnim 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+@keyframes expandAnim {
+  0% {
+    height: 200px;
+    padding: 7px;
+    opacity: 100%;
+    border-width: 3px;
+  }
+  100% {
+    height: 0px;
+    padding: 0px;
+    opacity: 0%;
+    border-width: 0px;
+  }
+}
+.InfoTileSmall.collapsed.interacted .dash-border-image-box {
+  height: 200px;
+  opacity: 1;
+  padding: 7px;
+  border-width: 3px;
+  animation: collapseAnim 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+@keyframes collapseAnim {
+  0% {
+    height: 0px;
+    padding: 0px;
+    opacity: 0;
+    border-width: 0px;
+  }
+  100% {
+    height: 200px;
+    padding: 7px;
+    opacity: 100%;
+    border-width: 3px;
+  }
 }
 .tile-image {
   object-fit: cover;
@@ -125,8 +179,8 @@ export default {
   width: 100%;
   height: 100%;
 }
-.small .tile-image {
-  min-width: none;
+.InfoTileSmall .tile-image {
+  min-width: 0;
 }
 .text-content-container {
   display: flex;
@@ -134,19 +188,20 @@ export default {
   padding: 5px 25px;
   max-width: 50%;
 }
-.small .text-content-container {
+.InfoTileSmall .text-content-container {
   max-width: none;
   width: auto;
   padding: 8px 0px;
+  flex: none;
 }
-.small .text-content-container:not(.collapsed) {
-  bottom: 0;
+.InfoTileSmall .text-content-container:not(.collapsed) {
   background-color: #162038;
 }
 .main-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 3.4em;
 }
 .main-title h2 {
   font-size: 1.7em;
@@ -160,7 +215,7 @@ export default {
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
-.small .main-title h2 {
+.InfoTileSmall .main-title h2 {
   margin-right: 5px;
   font-size: 1.1em;
 }
@@ -169,13 +224,20 @@ export default {
   width: 20px;
   transform: rotate(90deg);
 }
-.main-tile:not(.small) .toggle-open-close-btn {
+.main-tile:not(.InfoTileSmall) .toggle-open-close-btn {
   display: none;
+}
+.InfoTileSmall.collapsed .toggle-open-close-btn {
+  transform: rotate(270deg);
 }
 .collapsing-content {
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+.InfoTileSmall .collapsing-content {
+  height: 200px;
+  flex: none;
 }
 .tags {
   margin: 5px 0;
@@ -214,8 +276,8 @@ export default {
   -webkit-line-clamp: 7; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
-.small .description p {
-  font-size: 0.7em;
+.InfoTileSmall .description p {
+  font-size: 0.8em;
 }
 .external-links {
   display: flex;

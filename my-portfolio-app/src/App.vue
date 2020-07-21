@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <InfoTile />
+    <!-- <OrgInfoTile /> -->
+    <AboutMe />
   </div>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
-import InfoTile from "./components/InfoTile.vue";
+// import OrgInfoTile from "./components/OrgInfoTile.vue";
+import AboutMe from "./components/AboutMe.vue";
 
 export default {
   name: "App",
   components: {
     // HelloWorld,
-    InfoTile,
+    // OrgInfoTile,
+    AboutMe,
   },
 };
 </script>
