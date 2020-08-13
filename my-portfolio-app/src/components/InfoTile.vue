@@ -15,37 +15,42 @@
         },
       ]"
     >
-      <a :id="anchor"></a>
       <div class="dash-border-image-box">
-        <img :src="imageUrl" class="tile-image" />
+        <img :src="remoteAssetsUrl + data.imageUrl" class="tile-image" />
       </div>
       <div :class="['text-content-container']">
         <div class="main-title">
-          <h2>{{ mainTitle }}</h2>
+          <h2>{{ data.mainTitle }}</h2>
           <img
             class="toggle-open-close-btn"
-            :src="expandIcon"
+            :src="remoteAssetsUrl + expandIcon"
             @click="expandTile()"
           />
         </div>
         <div :class="['collapsing-content']">
           <div class="tags">
-            <div v-for="(tag, index) in tags" :key="index">
+            <div v-for="(tag, index) in data.tags" :key="index">
               <small>{{ tag }}</small>
-              <div v-if="index < tags.length - 1" class="circle-spacer"></div>
+              <div
+                v-if="index < data.tags.length - 1"
+                class="circle-spacer"
+              ></div>
             </div>
           </div>
           <div class="description">
-            <p>{{ description }}</p>
+            <p v-html="data.description"></p>
           </div>
           <div class="external-links">
             <a
-              v-for="(link, index) in externalLinks"
+              v-for="(link, index) in data.externalLinks"
               :key="index"
               :href="link.url"
               target="_blank"
             >
-              <img :src="link.icon" class="external-link-icon" />
+              <img
+                :src="remoteAssetsUrl + link.icon"
+                class="external-link-icon"
+              />
               <small class="external-link-name">{{ link.name }}</small>
             </a>
           </div>
@@ -57,34 +62,21 @@
 
 <script>
 import { Responsive } from "vue-responsive-components";
-// import image1 from "../assets/images/minnehack-group-photo-2020.jpg";
-import image1 from "../assets/images/minnehack-group-photo-2020-comp.jpg";
-import image2 from "../assets/Icons/external-link.svg";
-import image3 from "../assets/Icons/arrow.svg";
 
 export default {
   name: "InfoTile",
   props: {
     anchor: String,
+    data: Object,
   },
   components: {
     Responsive,
   },
   data: function() {
     return {
-      imageUrl: image1,
-      mainTitle: "Minnehack: University of Minnesota Hackathon",
-      expandIcon: image3,
-      tags: ["Help local community", "Team work"],
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.",
-      externalLinks: [
-        {
-          url: "https://minnehack.io/",
-          icon: image2,
-          name: "Minnehack",
-        },
-      ],
+      remoteAssetsUrl:
+        "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
+      expandIcon: "Icons/arrow.svg",
       collapsed: true,
       interacted: false,
     };
@@ -103,16 +95,23 @@ export default {
   display: flex;
   align-content: stretch;
   background-color: #162038;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
   border-radius: 10px;
   padding: 12px;
   margin: 25px 0px;
+  height: 40%;
 }
 .main-tile.InfoTileSmall {
   flex-direction: column;
   position: relative;
   height: 270px;
   overflow: hidden;
+  transition: padding-top 0.4s, height 0.4s;
+  transition-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+.main-tile.InfoTileSmall:not(.collapsed) {
+  padding-top: 0;
+  height: 282px;
 }
 .dash-border-image-box {
   flex: 1;
@@ -122,8 +121,9 @@ export default {
   border-color: #b2f9ff;
   border-radius: 7px;
   padding: 7px;
-  height: 280px;
-  min-width: 280px;
+  /* height: 100%; */
+  /* height: 280px; */
+  min-width: 50%;
 }
 .InfoTileSmall .dash-border-image-box {
   flex: none;
@@ -141,13 +141,13 @@ export default {
   0% {
     height: 200px;
     padding: 7px;
-    opacity: 100%;
+    opacity: 1;
     border-width: 3px;
   }
   100% {
     height: 0px;
     padding: 0px;
-    opacity: 0%;
+    opacity: 0;
     border-width: 0px;
   }
 }
@@ -168,7 +168,7 @@ export default {
   100% {
     height: 200px;
     padding: 7px;
-    opacity: 100%;
+    opacity: 1;
     border-width: 3px;
   }
 }
@@ -185,7 +185,7 @@ export default {
 .text-content-container {
   display: flex;
   flex-direction: column;
-  padding: 5px 25px;
+  padding: 5px 5px 5px 25px;
   max-width: 50%;
 }
 .InfoTileSmall .text-content-container {
@@ -204,7 +204,7 @@ export default {
   height: 3.4em;
 }
 .main-title h2 {
-  font-size: 1.7em;
+  font-size: 1.4em;
   font-family: Arial, Helvetica, sans-serif;
   color: #00efab;
   text-align: start;
@@ -236,7 +236,7 @@ export default {
   flex: 1;
 }
 .InfoTileSmall .collapsing-content {
-  height: 200px;
+  height: 215px;
   flex: none;
 }
 .tags {
@@ -270,11 +270,6 @@ export default {
   font-weight: 700;
   text-align: start;
   color: #fff;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 7; /* number of lines to show */
-  -webkit-box-orient: vertical;
 }
 .InfoTileSmall .description p {
   font-size: 0.8em;
@@ -282,26 +277,62 @@ export default {
 .external-links {
   display: flex;
   align-self: flex-end;
-  padding: 0;
+  padding: 0 0px;
 }
 .external-links a {
   display: flex;
+  margin: 0 10px;
   flex-direction: column;
   align-content: center;
-  text-decoration: none;
+  text-decoration-line: underline;
+  text-decoration-color: #00ddee;
 }
 .external-links a:hover {
-  text-decoration: none;
+  text-decoration-line: underline;
+  text-decoration-color: #00ddee;
 }
 .external-links a:visited {
-  text-decoration: none;
+  text-decoration-line: underline;
+  text-decoration-color: #00ddee;
 }
 .external-link-icon {
   height: 25px;
+  animation-name: attention;
+  transition: transform 0.3s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  /* animation-iteration-count: infinite;
+  animation-duration: 7s;
+  animation-timing-function: linear; */
+}
+.external-links a:hover .external-link-icon {
+  animation: none;
+  transform: translateY(-6px);
+}
+
+@keyframes attention {
+  0% {
+    transform: translateY(0);
+  }
+  3% {
+    transform: translateY(0);
+  }
+  6% {
+    transform: translateY(-4px);
+  }
+  9% {
+    transform: translateY(0);
+  }
+  12% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 .external-link-name {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.5em;
-  color: #646f8b;
+  margin-top: 3px;
+  color: #00ddee;
 }
 </style>

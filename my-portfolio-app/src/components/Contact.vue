@@ -8,27 +8,27 @@
     <div
       slot-scope="el"
       :class="[
-        'Abt-main-panel',
-        { AboutMeSmall: el.is.small, AboutMeMedium: el.is.medium },
+        'Cntct-main-panel',
+        { ContactSmall: el.is.small, ContactMedium: el.is.medium },
       ]"
     >
       <div class="title-and-description">
-        <h1 class="Abt-main-title">About Me</h1>
-        <p class="Abt-description" v-html="data.mainText"></p>
+        <h1 class="Cntct-main-title">Contact</h1>
+        <p class="Cntct-description" v-html="data.mainText"></p>
       </div>
-      <div
-        class="Abt-image"
-        :style="{
-          'background-image':
-            'linear-gradient(0deg,rgba(22, 32, 48, 1) 0%,rgba(25, 34, 58, 0.8029586834733894) 18%,rgba(105, 110, 126, 0) 43%,rgba(255, 255, 255, 0) 100%), url(' +
-            remoteAssetsUrl +
-            data.imageUrl +
-            ')',
-        }"
-      >
-        <small class="Abt-img-caption">
-          <p v-html="data.imageCaption"></p>
-        </small>
+      <div class="Cntct-info-box">
+        <div class="squarer">
+          <div
+            v-for="(item, index) in data.contactItems"
+            :key="index"
+            class="Cntct-info-item"
+          >
+            <img class="logo" :src="item.logoUrl" />
+            <a target="_blank" class="link" :href="item.linkUrl">{{
+              item.contactMethod
+            }}</a>
+          </div>
+        </div>
       </div>
     </div>
   </Responsive>
@@ -37,7 +37,7 @@
 <script>
 import { Responsive } from "vue-responsive-components";
 export default {
-  name: "AboutMe",
+  name: "Contact",
   props: {
     data: Object,
   },
@@ -55,11 +55,11 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
-.Abt-main-panel {
+.Cntct-main-panel {
   display: flex;
   align-items: center;
 }
-.AboutMeSmall.Abt-main-panel {
+.ContactSmall.Cntct-main-panel {
   flex-direction: column;
 }
 .title-and-description {
@@ -68,11 +68,11 @@ export default {
   width: 50%;
   height: fit-content;
 }
-.AboutMeSmall .title-and-description {
+.ContactSmall .title-and-description {
   width: auto;
   margin: 0 10px;
 }
-.Abt-main-title {
+.Cntct-main-title {
   font-family: "Bungee Inline", cursive;
   font-weight: normal;
   font-size: 3em;
@@ -81,11 +81,11 @@ export default {
   text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
   margin: 5px 0;
 }
-.AboutMeSmall .Abt-main-title {
+.ContactSmall .Cntct-main-title {
   font-size: 2em;
   text-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
 }
-.Abt-description {
+.Cntct-description {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1em;
   font-weight: 100;
@@ -94,16 +94,16 @@ export default {
   text-align: start;
   color: #b9faff;
 }
-.AboutMeMedium .Abt-description {
+.ContactMedium .Cntct-description {
   font-size: 0.9em;
 }
-.Abt-image {
+.Cntct-info-box {
   border-style: dashed;
   border-width: 3px;
   border-color: #b2f9ff;
   border-radius: 7px;
   padding: 6px;
-  margin-left: 40px;
+  margin-left: 10%;
   background-size: cover;
   background-clip: content-box;
   background-position: center;
@@ -111,42 +111,49 @@ export default {
   position: relative;
 
   width: 50%;
-  max-width: 500px;
+  max-width: 350px;
 }
-.AboutMeSmall .Abt-image {
-  width: 70%;
+.ContactSmall .Cntct-info-box {
+  width: 75%;
   margin: 40px 0 0 0;
 }
-.Abt-image:after {
+.Cntct-info-box .squarer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Cntct-info-box:after {
   content: "";
   display: block;
   padding-bottom: 100%;
 }
-.Abt-img-caption {
-  position: absolute;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.8em;
-  font-weight: 100;
+.Cntct-info-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid #00ddee;
+  padding: 7% 0;
+}
+.Cntct-info-item:nth-of-type(1) {
+  border: none;
+}
+.Cntct-info-item .logo {
+  width: 9%;
+  margin-right: 5%;
+}
+.Cntct-info-item .link {
+  font-size: min(1.2em, 2.5vw);
   text-align: start;
-  color: #fff;
-  bottom: 10px;
-  left: 10px;
+  color: #00ddee;
+  font-weight: 500;
 }
-.Abt-img-caption >>> b {
-  font-size: 100%;
-  font-weight: 900;
-  font-style: italic;
-  color: #fff;
-}
-.Abt-img-caption p {
-  font-size: 68%;
-  font-weight: 100;
-  margin: 3px 10px 3px 0;
-  color: #e0e0e0;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.ContactSmall .Cntct-info-item .link {
+  font-size: min(1.2em, 4vw);
 }
 </style>
