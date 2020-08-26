@@ -12,7 +12,7 @@
         <a
           class="nav-section resume-btn"
           :href="
-            remoteAssetsUrl + 'Files/BeckaGeleto-SayKidApplicationResume.pdf'
+            remoteAssetsUrl + 'Files/BeckaGeleto_Resume_08-26-2020.pdf'
           "
         >Resume ⤓</a>
       </div>
@@ -155,7 +155,7 @@ export default {
         WelcomeMessage:
           '<p> The following sections contains a highlight of some of my experience as a computer science student and enthuthiast. I’ve included my past \
           and present <a href="#project-section">projects</a>, extra curricular <a href="#activities-section">activities</a>, and relevant skills. </p> \
-          <p>To anyone who has any questions, tips or suggestions about the me or the content of this webpage, I\'d highly appreciate it if you \
+          <p>To anyone who has any questions, tips or suggestions about me or the content of this webpage, I\'d be very happy if you could \
           <a href="#contact-section">reach out</a> to me. </p>',
       },
       aboutMe: {
