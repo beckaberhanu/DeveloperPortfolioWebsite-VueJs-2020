@@ -248,8 +248,13 @@ export default {
             faced while trying to register for courses.",
           externalLinks: [
             {
-              url: "https://github.com/Kinnucan/vue_egg",
+              url: "https://github.com/beckaberhanu/ManiacalEgg-MyCopy",
               icon: "Icons/github-logo.svg",
+              name: "Github",
+            },
+            {
+              url: "https://beckageleto.dev/ManiacalEgg-MyCopy",
+              icon: "Icons/monitor.svg",
               name: "Github",
             },
           ],
@@ -282,7 +287,13 @@ export default {
             "MacHack is a Macalester College student org that hosts events and gatherings for students interested \
             in Computer Science. We have routine weekly meetings where we present on and discuss various \
             computer science topics.",
-          externalLinks: [],
+          externalLinks: [
+            {
+              url: "mailto: machack@macalester.edu",
+              icon: "Icons/gmail.svg",
+              name: "Email",
+            },
+          ],
         },
         {
           imageUrl: "images/{Activity}MinnehackGroupPhoto2020Comp[Small].jpg",
