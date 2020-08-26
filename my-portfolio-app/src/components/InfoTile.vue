@@ -1,9 +1,7 @@
 <template>
-  <Responsive
-    :breakpoints="{
+  <Responsive :breakpoints="{
       small: (el) => el.width <= 570,
-    }"
-  >
+    }">
     <div
       slot-scope="el"
       :class="[
@@ -19,26 +17,31 @@
         <img :src="remoteAssetsUrl + data.imageUrl" class="tile-image" />
       </div>
       <div :class="['text-content-container']">
-        <div class="main-title">
+        <div class="main-title" @click="expandTile()">
           <h2>{{ data.mainTitle }}</h2>
-          <img
-            class="toggle-open-close-btn"
-            :src="remoteAssetsUrl + expandIcon"
-            @click="expandTile()"
-          />
+          <img class="toggle-open-close-btn" :src="remoteAssetsUrl + expandIcon" />
         </div>
         <div :class="['collapsing-content']">
           <div class="tags">
             <div v-for="(tag, index) in data.tags" :key="index">
               <small>{{ tag }}</small>
-              <div
-                v-if="index < data.tags.length - 1"
-                class="circle-spacer"
-              ></div>
+              <div v-if="index < data.tags.length - 1" class="circle-spacer"></div>
             </div>
           </div>
           <div class="description">
             <p v-html="data.description"></p>
+            <p v-if="data.teamMates.length > 0" class="team-mates">TeamMates
+              <ul>
+              <li v-for="(teamMate, index) in data.teamMates" :key="index" style="color:#fff;">
+                {{teamMate.name}}
+                <a v-if="teamMate.link" :href="teamMate.link" target="_blank">
+                  <img
+                    :src="remoteAssetsUrl + teamMate.icon"
+                  />
+                </a>
+              </li>
+            </ul>
+            </p>
           </div>
           <div class="external-links">
             <a
@@ -47,10 +50,7 @@
               :href="link.url"
               target="_blank"
             >
-              <img
-                :src="remoteAssetsUrl + link.icon"
-                class="external-link-icon"
-              />
+              <img :src="remoteAssetsUrl + link.icon" class="external-link-icon" />
               <small class="external-link-name">{{ link.name }}</small>
             </a>
           </div>
@@ -72,7 +72,7 @@ export default {
   components: {
     Responsive,
   },
-  data: function() {
+  data: function () {
     return {
       remoteAssetsUrl:
         "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
@@ -82,7 +82,7 @@ export default {
     };
   },
   methods: {
-    expandTile: function() {
+    expandTile: function () {
       this.collapsed = this.collapsed ? false : true;
       this.interacted = true;
     },
@@ -234,6 +234,7 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
 }
 .InfoTileSmall .collapsing-content {
   height: 215px;
@@ -251,18 +252,25 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8em;
   font-weight: 600;
-  color: #465b8d;
+  color: #ff4390;
 }
 .tags .circle-spacer {
   margin: 0 0.4em;
   border-radius: 0.2em;
   height: 0.4em;
   width: 0.4em;
-  background-color: #465b8d;
+  background-color: #fff;
 }
 .description {
   flex: 1;
   overflow-y: scroll;
+  -webkit-mask-image: -webkit-linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 5%,
+    rgba(0, 0, 0, 1) 95%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 .description p {
   font-family: Arial, Helvetica, sans-serif;
@@ -273,6 +281,24 @@ export default {
 }
 .InfoTileSmall .description p {
   font-size: 0.8em;
+}
+p.team-mates {
+  color: #00eca9;
+  margin-left: 20px;
+}
+.team-mates ul {
+  margin: 0 0 0 20px;
+  list-style-type: square;
+  padding: 0;
+}
+.team-mates li{
+  margin: 4px 0;
+}
+.team-mates img {
+  height: 1.1em;
+}
+.team-mates a{
+  border-bottom: 1px solid #00ddee;
 }
 .external-links {
   display: flex;

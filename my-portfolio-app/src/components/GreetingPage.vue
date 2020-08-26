@@ -21,19 +21,7 @@
         </h1>
         <div class="box-nav-panel">
           <h2 class="nav-title">Welcome to my Portfolio</h2>
-          <div class="introduction">
-            <p>
-              The following sections contain a highlight of some of my
-              experience a computer science student and enthuthiast. I’ve
-              included my past and present projects, extra curricular
-              activities, relevant courses and skills.
-            </p>
-            <p>
-              To anyone who has any questions, tips, suggestions about the
-              content or format of this web site I highly encourage you to
-              <a href="#contact-section">reach out</a> to me.
-            </p>
-          </div>
+          <div class="introduction" v-html="WelcomeMessage"></div>
           <div class="nav-btns">
             <div>
               <a href="#about-me-section">About Me</a>
@@ -49,9 +37,14 @@
             </div>
           </div>
           <div class="contact-info">
-            <img :src="remoteAssetsUrl + 'Icons/linkedin.svg'" />
-            <img :src="remoteAssetsUrl + 'Icons/gmail.svg'" />
-            <img :src="remoteAssetsUrl + 'Icons/github-logo.svg'" />
+            <a
+              v-for="(contact, index) in contactInfo"
+              :key="index"
+              :href="contact.linkUrl"
+              target="_blank"
+            >
+              <img :src="contact.logoUrl" />
+            </a>
           </div>
         </div>
       </div>
@@ -61,7 +54,7 @@
         <img
           class="Grt-bkg-image"
           :src="
-            remoteAssetsUrl + 'images/{Misc}SaintPaulCityPictureMin[Mid].jpg'
+          remoteAssetsUrl + 'images/{Misc}BackyardPortrait[Mid+].jpg'
           "
         />
       </div>
@@ -77,7 +70,11 @@ export default {
   components: {
     Responsive,
   },
-  data: function() {
+  props: {
+    WelcomeMessage: String,
+    contactInfo: Array,
+  },
+  data: function () {
     return {
       remoteAssetsUrl:
         "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
@@ -187,7 +184,7 @@ export default {
 .GreetingSmall .introduction {
   display: none;
 }
-.introduction p {
+.introduction >>> p {
   font-family: "Courier Prime", monospace;
   font-weight: 400;
   font-size: 1.9vh;
@@ -196,21 +193,21 @@ export default {
   margin: 10px 0 2px 10px;
   line-height: 2.6vh;
 }
-.introduction p:nth-of-type(1) {
+.introduction >>> p:nth-of-type(1) {
   margin-top: 2px;
 }
-.introduction p >>> a {
+.introduction >>> p a {
   text-decoration: none;
   color: #00ddee;
   position: relative;
 }
-.introduction p >>> a:visited {
+.introduction >>> p a:visited {
   text-decoration: none;
 }
-.introduction p >>> a:hover {
+.introduction >>> p a:hover {
   text-decoration: none;
 }
-.introduction p >>> a::after {
+.introduction >>> p a::after {
   content: "";
   position: absolute;
   bottom: 0px;
@@ -222,7 +219,7 @@ export default {
   transition: width 0.3s, left 0.3s, opacity 0.4s;
   transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
-.introduction p >>> a:hover::after {
+.introduction >>> p a:hover::after {
   width: 80%;
   left: 10%;
   opacity: 1;
@@ -286,7 +283,7 @@ export default {
   height: 100%;
   width: 50%;
   background-image: radial-gradient(
-    ellipse farthest-side at 30% 30%,
+    ellipse farthest-side at 40% 50%,
     rgba(22, 34, 52, 0) 0%,
     rgba(27, 34, 52, 0.83) 75%,
     rgba(27, 34, 52, 1) 100%
@@ -298,7 +295,7 @@ export default {
   height: 65%;
   min-width: 0;
   background-image: radial-gradient(
-    ellipse farthest-side at 50% 20%,
+    ellipse farthest-side at 50% 35%,
     rgba(27, 34, 52, 0) 0%,
     rgba(27, 34, 52, 0.83) 77%,
     #1b2234 100%

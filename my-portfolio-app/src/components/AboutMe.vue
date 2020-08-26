@@ -44,7 +44,7 @@ export default {
   components: {
     Responsive,
   },
-  data: function() {
+  data: function () {
     return {
       remoteAssetsUrl:
         "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
@@ -94,6 +94,35 @@ export default {
   text-align: start;
   color: #b9faff;
 }
+.Abt-description >>> a {
+  text-decoration: none;
+  color: #00ddee;
+  position: relative;
+}
+.Abt-description >>> a:visited {
+  text-decoration: none;
+}
+.Abt-description >>> a:hover {
+  text-decoration: none;
+}
+.Abt-description >>> a::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  height: 2px;
+  width: 0;
+  opacity: 0;
+  background-color: #00ddee;
+  transition: width 0.3s, left 0.3s, opacity 0.4s, margin-bottom 0.5s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.Abt-description >>> a:hover::after {
+  margin-bottom: -2px;
+  width: 80%;
+  left: 10%;
+  opacity: 1;
+}
 .AboutMeMedium .Abt-description {
   font-size: 0.9em;
 }
@@ -139,7 +168,7 @@ export default {
   color: #fff;
 }
 .Abt-img-caption p {
-  font-size: 68%;
+  font-size: 80%;
   font-weight: 100;
   margin: 3px 10px 3px 0;
   color: #e0e0e0;

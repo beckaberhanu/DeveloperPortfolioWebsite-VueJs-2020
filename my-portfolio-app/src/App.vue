@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <nav class="top-nav-bar">
-      <h1 class="site-logo">Becka Geleto</h1>
+      <a href="#greeting-section" class="back-to-top">
+        <h1 class="site-logo">Becka Geleto</h1>
+      </a>
       <div :class="['nav-sections', { closed: !menuOpened }]">
         <a class="nav-section" href="#about-me-section">About Me</a>
         <a class="nav-section" href="#project-section">Projects</a>
@@ -12,15 +14,18 @@
           :href="
             remoteAssetsUrl + 'Files/BeckaGeleto-SayKidApplicationResume.pdf'
           "
-          >Resume</a
-        >
+        >Resume ⤓</a>
       </div>
       <div class="hamburger-button" @click="toggleMenu()">
         <img :src="remoteAssetsUrl + 'Icons/open-menu.svg'" />
       </div>
     </nav>
+    <div id="greeting-section" style="height:0px; width:100px;"></div>
     <section class="greeting-section">
-      <GreetingPage />
+      <GreetingPage
+        :WelcomeMessage="greetingPage.WelcomeMessage"
+        :contactInfo="contact.contactItems"
+      />
     </section>
     <div id="about-me-section" style="height:0px; width:100px;"></div>
     <section class="about-me-section">
@@ -69,10 +74,22 @@
       <div class="right-side-spacer"></div>
     </section>
     <div class="about-webpage">
-      <p>Designed and Developed by: <b>Becka Geleto</b></p>
-      <p>Built using: <b>Vue.js</b></p>
-      <p>Inspired by: <b>Brittany Chang, brittanychiang.com/</b></p>
-      <p>Hosted on: <b>Github Pages</b></p>
+      <p>
+        Designed and Developed by:
+        <b>Becka Geleto</b>
+      </p>
+      <p>
+        Built using:
+        <b>Vue.js</b>
+      </p>
+      <p>
+        Inspired by:
+        <b>Brittany Chang, brittanychiang.com/</b>
+      </p>
+      <p>
+        Hosted on:
+        <b>Github Pages</b>
+      </p>
     </div>
   </div>
 </template>
@@ -92,17 +109,18 @@ export default {
     Contact,
   },
   methods: {
-    toggleMenu: function() {
+    toggleMenu: function () {
       this.menuOpened = !this.menuOpened;
     },
   },
   computed: {
-    contact: function() {
+    contact: function () {
       return {
         mainText:
-          "<p>What to get in touch? Awesome! <p/> \
-          <p>I am currently actively looking for a software developement internship opportunities and I'd love to hear from any \
-          potential employers interested in me. Please feel free to reach out using one of the following methods.</p>",
+          "<p>Want to get in touch? Awesome! <p/> \
+          <p>I am actively looking for internship opportunities in software development and I'd love to hear from any \
+          potential employers interested in me. Please feel free to reach out using one of the following methods.</p> \
+          <p>Preferably email : )<p/>",
         contactItems: [
           {
             logoUrl: this.remoteAssetsUrl + "Icons/gmail.svg",
@@ -128,28 +146,36 @@ export default {
       };
     },
   },
-  data: function() {
+  data: function () {
     return {
       remoteAssetsUrl:
         "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
       menuOpened: false,
+      greetingPage: {
+        WelcomeMessage:
+          '<p> The following sections contains a highlight of some of my experience as a computer science student and enthuthiast. I’ve included my past \
+          and present <a href="#project-section">projects</a>, extra curricular <a href="#activities-section">activities</a>, and relevant skills. </p> \
+          <p>To anyone who has any questions, tips or suggestions about the me or the content of this webpage, I\'d highly appreciate it if you \
+          <a href="#contact-section">reach out</a> to me. </p>',
+      },
       aboutMe: {
         mainText:
-          "Hello! My name is Becka Geleto. I am a computer science major at Macalester College and an aspiring software developer actively \
-          looking for opportunities to bridge my education with real world applications that I can learn and grow from. ",
+          '<p>Hello! My name is Becka Geleto. I am an aspiring software developer studying computer science at <a href="https://www.macalester.edu" target="_blank">Macalester College</a> in St.Paul, Minnesota.</p> \
+          <p>I am excited to get an opportunity to bridge my education with real world experience that I can learn and grow from.</p>',
         imageUrl: "images/{Misc}SanFranciscoBeachPicture[Mid].jpg",
         imageCaption:
-          "Picture taken at Baker Beach during a brief break from <b>Twitter</b>’s weeklong <b>#EarlyBird</b> program in <b>San Francisco, CA</b>",
+          "Picture taken at Baker Beach during a brief break from <b>Twitter</b>’s weeklong <b>#EarlyBird</b> program in <b>San Francisco, CA</b>. Good Times!",
       },
       projects: [
         {
           imageUrl: "images/{Project}DeveloperPortfolio[Small].jpg",
           mainTitle: "Portfolio WebSite",
           tags: ["Vue.Js", "Adobe XD", "Github Pages"],
+          teamMates: [],
           description:
-            "I developed this website using VueJs to showcase some of my computer projects to employers. \
-            I designed the UI using Adobe XD with a great deal of attention to responsive design to ensure \
-            that it looks good on most devices.",
+            "I developed this website using VueJs to showcase my CS projects to employers. The website was designed using Adobe \
+            XD and the UI was implemented using a priciple called 'Responsive Web Design' so that it can properly fit a wide variety \
+            of devices.",
           externalLinks: [
             {
               url:
@@ -168,9 +194,26 @@ export default {
           imageUrl: "images/{Project}TextBookSwap[Small].jpg",
           mainTitle: "Textbook Swap Website",
           tags: ["Django", "Python", "Adobe XD"],
+          teamMates: [
+            {
+              name: "Nadav Skloot",
+              icon: "Icons/github-logo.svg",
+              link: "https://github.com/nadavskloot",
+            },
+            {
+              name: "Tianrui Lui",
+              icon: "Icons/linkedin.svg",
+              link: "https://www.linkedin.com/in/tianrui-liu-6443bb149",
+            },
+            {
+              name: "Qingru Zhang",
+              icon: "Icons/linkedin.svg",
+              link: "https://www.linkedin.com/in/qingru-zhang/",
+            },
+          ],
           description:
-            "A website for selling, purchasing or swapping textbooks. I developed this website alongside 3 other team-mates for a software design and development \
-            course in the spring 2020 semester",
+            "A website for selling, purchasing and swapping textbooks. I developed this website alongside 3 team-mates for a software design and development \
+            course that I took during the spring 2020 semester",
           externalLinks: [
             {
               url: "https://github.com/beckaberhanu/TextBookSwap",
@@ -183,12 +226,46 @@ export default {
           imageUrl: "images/{Project}ManiacalEgg[Small].jpg",
           mainTitle: "Maniacal Egg",
           tags: ["Vue.js", "Python", "Adobe XD"],
+          teamMates: [
+            {
+              name: "Lena Underwood",
+              icon: "Icons/github-logo.svg",
+              link: "https://github.com/lenaunderwood22",
+            },
+            {
+              name: "Ryan Kinnucan",
+              icon: "Icons/linkedin.svg",
+              link: "https://www.linkedin.com/in/ryankinnucan/",
+            },
+            {
+              name: "Elisabeth Landgren",
+              icon: "Icons/github-logo.svg",
+              link: "https://github.com/elishbeth",
+            },
+          ],
           description:
-            "A webapp for filtering through courses offered at macalester college in a clear and intuitive manner. I developed this web app along with three friends to solve some recurring difficulties we \
-            faced while trying to register for courses",
+            "A webapp for filtering through courses offered at Macalester College in a clear and intuitive manner. I developed this web app along with three friends to solve some recurring difficulties we \
+            faced while trying to register for courses.",
           externalLinks: [
             {
               url: "https://github.com/Kinnucan/vue_egg",
+              icon: "Icons/github-logo.svg",
+              name: "Github",
+            },
+          ],
+        },
+        {
+          imageUrl: "images/{Project}MachineLearningJava[Small].jpg",
+          mainTitle: "[MNIST] Machine Learning Project",
+          tags: ["Java", "Machine Learning"],
+          teamMates: [],
+          description:
+            "Built a basic machine learning algorithm from the ground up using Java. Implemented as a multilayer perceptron with multiple \
+            configurable parameters such as network architecture, depth, learning rate and bias. <p>Able to make predictions with up to 92% \
+            accuracy on the MNIST dataset of 60,000 handwritten digits at its current state.</p>",
+          externalLinks: [
+            {
+              url: "https://github.com/beckaberhanu/MachineLearning2",
               icon: "Icons/github-logo.svg",
               name: "Github",
             },
@@ -200,9 +277,10 @@ export default {
           imageUrl: "images/{Activity}MacHackMeeting[Small].jpg",
           mainTitle: "MacHack: Macalester Computer Science Club",
           tags: ["CS", "Student Org", "Weekly Meetings"],
+          teamMates: [],
           description:
-            "MacHack is macalester college student org that hosts events and gatherings for students interested \
-            in Computer Science. We have routine weekly meetings where we present on and discuss a various \
+            "MacHack is a Macalester College student org that hosts events and gatherings for students interested \
+            in Computer Science. We have routine weekly meetings where we present on and discuss various \
             computer science topics.",
           externalLinks: [],
         },
@@ -210,10 +288,11 @@ export default {
           imageUrl: "images/{Activity}MinnehackGroupPhoto2020Comp[Small].jpg",
           mainTitle: "Minnehack 2020: University of Minnesota Hackathon",
           tags: ["Hackathon", "Team work"],
+          teamMates: [],
           description:
             "Minnehack is a yearly hackathon hosted by University of Minnesota Association for Computing \
             Machinery. It was a 24 hour event where participants compete to build the best project on a theme.\
-            The theme that year was 'develop a solution for local communities to help them foster social good' ",
+            The theme that year was to develop a solution for 'local communities' to prmotoe 'social good'",
           externalLinks: [
             {
               url: "https://minnehack.io/",
@@ -226,6 +305,7 @@ export default {
           imageUrl: "images/{Activity}EarlyBirdTwitter[Small].jpg",
           mainTitle: "#EarlyBird: Twitter Summer Workshop",
           tags: ["Workshop", "Competition", "2nd place"],
+          teamMates: [],
           description:
             "I was selected to participate in a weeklong educational summer program at Twitter's headquarters in \
             San Francisco, California. Collaborated with 4 other participants and a senior software engineer to \
@@ -241,7 +321,7 @@ export default {
       ],
     };
   },
-  mounted: function() {
+  mounted: function () {
     document.title = "Becka Geleto";
   },
 };
@@ -284,6 +364,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.back-to-top {
+  text-decoration: none;
+}
+.back-to-top:hover {
+  text-decoration: none;
+}
+.back-to-top:visited {
+  text-decoration: none;
 }
 .site-logo {
   margin: 0 0 0 30px;
@@ -436,7 +525,7 @@ body {
   position: sticky;
   /* position: relative; */
   height: 250px;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 -5px 80px rgba(0, 239, 171, 50%);
 }
 .about-webpage p {
   font-size: 1em;
@@ -540,6 +629,7 @@ body {
   .about-webpage {
     position: unset;
     scroll-snap-align: none;
+    box-shadow: none;
   }
 }
 </style>
