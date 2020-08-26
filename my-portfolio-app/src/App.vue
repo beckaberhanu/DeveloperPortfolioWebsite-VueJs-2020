@@ -12,7 +12,7 @@
         <a
           class="nav-section resume-btn"
           :href="
-            remoteAssetsUrl + 'Files/BeckaGeleto_Resume_08-26-2020.pdf'
+            remoteAssetsUrl + 'Files/BeckaGeleto-Resume.pdf'
           "
         >Resume ⤓</a>
       </div>
