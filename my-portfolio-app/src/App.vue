@@ -11,13 +11,12 @@
         <a class="nav-section" href="#contact-section">Contact</a>
         <a
           class="nav-section resume-btn"
-          :href="
-            remoteAssetsUrl + 'Files/BeckaGeleto-Resume.pdf'
-          "
+          target="_blank"
+          href="/Static/Files/BeckaGeleto-Resume.pdf"
         >Resume ⤓</a>
       </div>
       <div class="hamburger-button" @click="toggleMenu()">
-        <img :src="remoteAssetsUrl + 'Icons/open-menu.svg'" />
+        <img src="/Static/Icons/open-menu.svg" />
       </div>
     </nav>
     <div id="greeting-section" style="height:0px; width:100px;"></div>
@@ -123,22 +122,22 @@ export default {
           <p>Preferably email : )<p/>",
         contactItems: [
           {
-            logoUrl: this.remoteAssetsUrl + "Icons/gmail.svg",
+            logoUrl: "/Static/Icons/gmail.svg",
             linkUrl: "mailto: bgeleto@macalester.edu",
             contactMethod: "bgeleto@macalester.edu",
           },
           {
-            logoUrl: this.remoteAssetsUrl + "Icons/github-logo.svg",
+            logoUrl: "/Static/Icons/github-logo.svg",
             linkUrl: "https://github.com/beckaberhanu",
             contactMethod: "github.com/beckaberhanu",
           },
           {
-            logoUrl: this.remoteAssetsUrl + "Icons/linkedin.svg",
+            logoUrl: "/Static/Icons/linkedin.svg",
             linkUrl: "https://linkedin.com/in/becka-geleto",
             contactMethod: "linkedin.com/in/becka-geleto",
           },
           {
-            logoUrl: this.remoteAssetsUrl + "Icons/phone.svg",
+            logoUrl: "/Static/Icons/phone.svg",
             linkUrl: "tel:651-434-0971",
             contactMethod: "(651)-434-0971",
           },
@@ -148,27 +147,25 @@ export default {
   },
   data: function () {
     return {
-      remoteAssetsUrl:
-        "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
       menuOpened: false,
       greetingPage: {
         WelcomeMessage:
-          '<p> The following sections contains a highlight of some of my experience as a computer science student and enthuthiast. I’ve included my past \
+          '<p> The following sections contain a highlight of some of my experience as a computer science student and enthuthiast. I’ve included my past \
           and present <a href="#project-section">projects</a>, extra curricular <a href="#activities-section">activities</a>, and relevant skills. </p> \
-          <p>To anyone who has any questions, tips or suggestions about me or the content of this webpage, I\'d be very happy if you could \
+          <p>To anyone who has any questions, tips or suggestions about me or the content of this webpage, I would be happy if you could \
           <a href="#contact-section">reach out</a> to me. </p>',
       },
       aboutMe: {
         mainText:
           '<p>Hello! My name is Becka Geleto. I am an aspiring software developer studying computer science at <a href="https://www.macalester.edu" target="_blank">Macalester College</a> in St.Paul, Minnesota.</p> \
           <p>I am excited to get an opportunity to bridge my education with real world experience that I can learn and grow from.</p>',
-        imageUrl: "images/{Misc}SanFranciscoBeachPicture[Mid].jpg",
+        imageUrl: "/Static/Images/{Misc}SanFranciscoBeachPicture[Mid].jpg",
         imageCaption:
           "Picture taken at Baker Beach during a brief break from <b>Twitter</b>’s weeklong <b>#EarlyBird</b> program in <b>San Francisco, CA</b>. Good Times!",
       },
       projects: [
         {
-          imageUrl: "images/{Project}DeveloperPortfolio[Small].jpg",
+          imageUrl: "/Static/Images/{Project}DeveloperPortfolio[Small].jpg",
           mainTitle: "Portfolio WebSite",
           tags: ["Vue.Js", "Adobe XD", "Github Pages"],
           teamMates: [],
@@ -180,34 +177,34 @@ export default {
             {
               url:
                 "https://github.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               name: "Github",
             },
             {
               url: "https://beckaberhanu.github.io",
-              icon: "Icons/monitor.svg",
+              icon: "/Static/Icons/monitor.svg",
               name: "Demo",
             },
           ],
         },
         {
-          imageUrl: "images/{Project}TextBookSwap[Small].jpg",
+          imageUrl: "/Static/Images/{Project}TextBookSwap[Small].jpg",
           mainTitle: "Textbook Swap Website",
           tags: ["Django", "Python", "Adobe XD"],
           teamMates: [
             {
               name: "Nadav Skloot",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               link: "https://github.com/nadavskloot",
             },
             {
               name: "Tianrui Lui",
-              icon: "Icons/linkedin.svg",
+              icon: "/Static/Icons/linkedin.svg",
               link: "https://www.linkedin.com/in/tianrui-liu-6443bb149",
             },
             {
               name: "Qingru Zhang",
-              icon: "Icons/linkedin.svg",
+              icon: "/Static/Icons/linkedin.svg",
               link: "https://www.linkedin.com/in/qingru-zhang/",
             },
           ],
@@ -217,29 +214,29 @@ export default {
           externalLinks: [
             {
               url: "https://github.com/beckaberhanu/TextBookSwap",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               name: "Github",
             },
           ],
         },
         {
-          imageUrl: "images/{Project}ManiacalEgg[Small].jpg",
+          imageUrl: "/Static/Images/{Project}ManiacalEgg[Small].jpg",
           mainTitle: "Maniacal Egg",
           tags: ["Vue.js", "Python", "Adobe XD"],
           teamMates: [
             {
               name: "Lena Underwood",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               link: "https://github.com/lenaunderwood22",
             },
             {
               name: "Ryan Kinnucan",
-              icon: "Icons/linkedin.svg",
+              icon: "/Static/Icons/linkedin.svg",
               link: "https://www.linkedin.com/in/ryankinnucan/",
             },
             {
               name: "Elisabeth Landgren",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               link: "https://github.com/elishbeth",
             },
           ],
@@ -249,18 +246,18 @@ export default {
           externalLinks: [
             {
               url: "https://github.com/beckaberhanu/ManiacalEgg-MyCopy",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               name: "Github",
             },
             {
               url: "https://beckageleto.dev/ManiacalEgg-MyCopy",
-              icon: "Icons/monitor.svg",
+              icon: "/Static/Icons/monitor.svg",
               name: "Github",
             },
           ],
         },
         {
-          imageUrl: "images/{Project}MachineLearningJava[Small].jpg",
+          imageUrl: "/Static/Images/{Project}MachineLearningJava[Small].jpg",
           mainTitle: "[MNIST] Machine Learning Project",
           tags: ["Java", "Machine Learning"],
           teamMates: [],
@@ -271,7 +268,7 @@ export default {
           externalLinks: [
             {
               url: "https://github.com/beckaberhanu/MachineLearning2",
-              icon: "Icons/github-logo.svg",
+              icon: "/Static/Icons/github-logo.svg",
               name: "Github",
             },
           ],
@@ -279,7 +276,7 @@ export default {
       ],
       activities: [
         {
-          imageUrl: "images/{Activity}MacHackMeeting[Small].jpg",
+          imageUrl: "/Static/Images/{Activity}MacHackMeeting[Small].jpg",
           mainTitle: "MacHack: Macalester Computer Science Club",
           tags: ["CS", "Student Org", "Weekly Meetings"],
           teamMates: [],
@@ -290,13 +287,14 @@ export default {
           externalLinks: [
             {
               url: "mailto: machack@macalester.edu",
-              icon: "Icons/gmail.svg",
+              icon: "/Static/Icons/gmail.svg",
               name: "Email",
             },
           ],
         },
         {
-          imageUrl: "images/{Activity}MinnehackGroupPhoto2020Comp[Small].jpg",
+          imageUrl:
+            "/Static/Images/{Activity}MinnehackGroupPhoto2020Comp[Small].jpg",
           mainTitle: "Minnehack 2020: University of Minnesota Hackathon",
           tags: ["Hackathon", "Team work"],
           teamMates: [],
@@ -307,13 +305,13 @@ export default {
           externalLinks: [
             {
               url: "https://minnehack.io/",
-              icon: "Icons/external-link.svg",
+              icon: "/Static/Icons/external-link.svg",
               name: "Minnehack",
             },
           ],
         },
         {
-          imageUrl: "images/{Activity}EarlyBirdTwitter[Small].jpg",
+          imageUrl: "/Static/Images/{Activity}EarlyBirdTwitter[Small].jpg",
           mainTitle: "#EarlyBird: Twitter Summer Workshop",
           tags: ["Workshop", "Competition", "2nd place"],
           teamMates: [],
@@ -324,7 +322,7 @@ export default {
           externalLinks: [
             {
               url: "https://twitterearlybirdcamp.splashthat.com/",
-              icon: "Icons/external-link.svg",
+              icon: "/Static/Icons/external-link.svg",
               name: "#EarlyBird",
             },
           ],

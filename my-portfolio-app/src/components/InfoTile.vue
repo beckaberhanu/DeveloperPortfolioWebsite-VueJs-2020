@@ -14,12 +14,12 @@
       ]"
     >
       <div class="dash-border-image-box">
-        <img :src="remoteAssetsUrl + data.imageUrl" class="tile-image" />
+        <img :src="data.imageUrl" class="tile-image" />
       </div>
       <div :class="['text-content-container']">
         <div class="main-title" @click="expandTile()">
           <h2>{{ data.mainTitle }}</h2>
-          <img class="toggle-open-close-btn" :src="remoteAssetsUrl + expandIcon" />
+          <img class="toggle-open-close-btn" src="Static/Icons/arrow.svg" />
         </div>
         <div :class="['collapsing-content']">
           <div class="tags">
@@ -32,15 +32,15 @@
             <p v-html="data.description"></p>
             <p v-if="data.teamMates.length > 0" class="team-mates">TeamMates
               <ul>
-              <li v-for="(teamMate, index) in data.teamMates" :key="index" style="color:#fff;">
-                {{teamMate.name}}
-                <a v-if="teamMate.link" :href="teamMate.link" target="_blank">
-                  <img
-                    :src="remoteAssetsUrl + teamMate.icon"
-                  />
-                </a>
-              </li>
-            </ul>
+                <li v-for="(teamMate, index) in data.teamMates" :key="index" style="color:#fff;">
+                  {{teamMate.name}}
+                  <a v-if="teamMate.link" :href="teamMate.link" target="_blank">
+                    <img
+                      :src="teamMate.icon"
+                    />
+                  </a>
+                </li>
+              </ul>
             </p>
           </div>
           <div class="external-links">
@@ -50,7 +50,7 @@
               :href="link.url"
               target="_blank"
             >
-              <img :src="remoteAssetsUrl + link.icon" class="external-link-icon" />
+              <img :src="link.icon" class="external-link-icon" />
               <small class="external-link-name">{{ link.name }}</small>
             </a>
           </div>
@@ -74,8 +74,6 @@ export default {
   },
   data: function () {
     return {
-      remoteAssetsUrl:
-        "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
       expandIcon: "Icons/arrow.svg",
       collapsed: true,
       interacted: false,

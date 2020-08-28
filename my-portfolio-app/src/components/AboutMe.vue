@@ -21,7 +21,6 @@
         :style="{
           'background-image':
             'linear-gradient(0deg,rgba(22, 32, 48, 1) 0%,rgba(25, 34, 58, 0.8029586834733894) 18%,rgba(105, 110, 126, 0) 43%,rgba(255, 255, 255, 0) 100%), url(' +
-            remoteAssetsUrl +
             data.imageUrl +
             ')',
         }"
@@ -43,12 +42,6 @@ export default {
   },
   components: {
     Responsive,
-  },
-  data: function () {
-    return {
-      remoteAssetsUrl:
-        "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
-    };
   },
 };
 </script>

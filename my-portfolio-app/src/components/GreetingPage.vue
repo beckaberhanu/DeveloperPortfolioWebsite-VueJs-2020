@@ -51,12 +51,7 @@
       <div class="layer-2">
         <div class="Grt-cover"></div>
         <div class="Grt-btm-cover"></div>
-        <img
-          class="Grt-bkg-image"
-          :src="
-          remoteAssetsUrl + 'images/{Misc}BackyardPortrait[Mid+].jpg'
-          "
-        />
+        <img class="Grt-bkg-image" src="/Static/Images/{Misc}BackyardPortrait[Mid+].jpg" />
       </div>
     </div>
   </Responsive>
@@ -73,12 +68,6 @@ export default {
   props: {
     WelcomeMessage: String,
     contactInfo: Array,
-  },
-  data: function () {
-    return {
-      remoteAssetsUrl:
-        "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
-    };
   },
 };
 </script>

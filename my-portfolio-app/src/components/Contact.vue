@@ -18,15 +18,13 @@
       </div>
       <div class="Cntct-info-box">
         <div class="squarer">
-          <div
-            v-for="(item, index) in data.contactItems"
-            :key="index"
-            class="Cntct-info-item"
-          >
+          <div v-for="(item, index) in data.contactItems" :key="index" class="Cntct-info-item">
             <img class="logo" :src="item.logoUrl" />
-            <a target="_blank" class="link" :href="item.linkUrl">{{
+            <a target="_blank" class="link" :href="item.linkUrl">
+              {{
               item.contactMethod
-            }}</a>
+              }}
+            </a>
           </div>
         </div>
       </div>
@@ -43,12 +41,6 @@ export default {
   },
   components: {
     Responsive,
-  },
-  data: function() {
-    return {
-      remoteAssetsUrl:
-        "https://raw.githubusercontent.com/beckaberhanu/DeveloperPortfolioWebsite-VueJs-2020/master/my-portfolio-app/src/assets/",
-    };
   },
 };
 </script>
