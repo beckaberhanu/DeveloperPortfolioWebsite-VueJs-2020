@@ -30,18 +30,17 @@
           </div>
           <div class="description">
             <p v-html="data.description"></p>
-            <p v-if="data.teamMates.length > 0" class="team-mates">TeamMates
+            <div v-if="data.teamMates.length > 0" class="team-mates">
+              TeamMates
               <ul>
                 <li v-for="(teamMate, index) in data.teamMates" :key="index" style="color:#fff;">
                   {{teamMate.name}}
                   <a v-if="teamMate.link" :href="teamMate.link" target="_blank">
-                    <img
-                      :src="teamMate.icon"
-                    />
+                    <img :src="teamMate.icon" />
                   </a>
                 </li>
               </ul>
-            </p>
+            </div>
           </div>
           <div class="external-links">
             <a
@@ -280,8 +279,11 @@ export default {
 .InfoTileSmall .description p {
   font-size: 0.8em;
 }
-p.team-mates {
+div.team-mates {
   color: #00eca9;
+  font-size: 0.8em;
+  font-weight: 700;
+  text-align: start;
   margin-left: 20px;
 }
 .team-mates ul {
@@ -289,13 +291,13 @@ p.team-mates {
   list-style-type: square;
   padding: 0;
 }
-.team-mates li{
+.team-mates li {
   margin: 4px 0;
 }
 .team-mates img {
   height: 1.1em;
 }
-.team-mates a{
+.team-mates a {
   border-bottom: 1px solid #00ddee;
 }
 .external-links {
