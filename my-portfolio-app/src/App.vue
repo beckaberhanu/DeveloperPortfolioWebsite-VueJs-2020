@@ -6,6 +6,7 @@
       </a>
       <div :class="['nav-sections', { closed: !menuOpened }]">
         <a class="nav-section" href="#about-me-section">About Me</a>
+        <a class="nav-section" href="#experience-section">Experience</a>
         <a class="nav-section" href="#project-section">Projects</a>
         <a class="nav-section" href="#activities-section">Activities</a>
         <a class="nav-section" href="#contact-section">Contact</a>
@@ -36,9 +37,21 @@
       </div>
       <div class="right-side-spacer"></div>
     </section>
+    <div id="experience-section" style="height:0px; width:100px;"></div>
+    <section class="experience-section stacking-slide">
+      <div class="left-side-spacer v2">
+        <span class="vertical-text-container">
+          <h1>Experience</h1>
+        </span>
+      </div>
+      <div class="section-content">
+        <org-info-tile title="Experience" :tileContents="workExperience" />
+      </div>
+      <div class="right-side-spacer"></div>
+    </section>
     <div id="project-section" style="height:0px; width:100px;"></div>
     <section class="project-section stacking-slide">
-      <div class="left-side-spacer v2">
+      <div class="left-side-spacer v1">
         <span class="vertical-text-container">
           <h1>Projects</h1>
         </span>
@@ -50,7 +63,7 @@
     </section>
     <div id="activities-section" style="height:0px; width:100px;"></div>
     <section class="activities-section stacking-slide">
-      <div class="left-side-spacer v1">
+      <div class="left-side-spacer v2">
         <span class="vertical-text-container">
           <h1>Activities</h1>
         </span>
@@ -62,7 +75,7 @@
     </section>
     <div id="contact-section" style="height:0px; width:100px;"></div>
     <section class="contact-section stacking-slide">
-      <div class="left-side-spacer v2">
+      <div class="left-side-spacer v1">
         <span class="vertical-text-container">
           <h1>Contact</h1>
         </span>
@@ -117,8 +130,8 @@ export default {
       return {
         mainText:
           "<p>Want to get in touch? Awesome! <p/> \
-          <p>I am actively looking for internship opportunities in software development and I'd love to hear from any \
-          potential employers interested in me. Please feel free to reach out using one of the following methods.</p> \
+          <p>I am actively looking for new grad opportunities in software development and I'd love to hear from any \
+          employers interested in me. Please feel free to reach out using one of the following methods.</p> \
           <p>Preferably email : )<p/>",
         contactItems: [
           {
@@ -150,14 +163,14 @@ export default {
       menuOpened: false,
       greetingPage: {
         WelcomeMessage:
-          '<p> The following sections contain a highlight of some of my experience as a computer science student and enthuthiast. I’ve included my past \
+          '<p> This portfolio contains a highlight of some of my experiences as a software developer, computer science student and overall technology enthuthiast. I’ve included my past \
           and present <a href="#project-section">projects</a>, extra curricular <a href="#activities-section">activities</a>, and relevant skills. </p> \
-          <p>To anyone who has any questions, tips or suggestions about me or the content of this webpage, I would be happy if you could \
-          <a href="#contact-section">reach out</a> to me. </p>',
+          <p>I am still accepting feedback on this webpage so please don\'t hesitate to <a href="#contact-section">contact me</a> with any questions, tips and suggestions you may have \
+          about the content or format of this webpage. </p>',
       },
       aboutMe: {
         mainText:
-          '<p>Hello! My name is Becka Geleto. I am an aspiring software developer studying computer science at <a href="https://www.macalester.edu" target="_blank">Macalester College</a> in St.Paul, Minnesota.</p> \
+          '<p>Hello! My name is Becka Geleto. I am asoftware developer from St. Paul, Minnesota. I am currently senior at <a href="https://www.macalester.edu" target="_blank">Macalester College</a> where I have majored in computer science.</p> \
           <p>I am excited to get an opportunity to bridge my education with real world experience that I can learn and grow from.</p>',
         imageUrl: "/Static/Images/{Misc}SanFranciscoBeachPicture[Mid].jpg",
         imageCaption:
@@ -274,6 +287,30 @@ export default {
           ],
         },
       ],
+      workExperience: [
+        {
+          imageUrl: "/Static/Images/{Experience}LyftDashBoardLight[Small].jpeg",
+          mainTitle: "Lyft: Software Engineer Intern",
+          tags: ["React", "Node", "Test driven development"],
+          teamMates: [],
+          description:
+            "<p>Migrated an internal web portal used by Lyft’s CET agents to create, upload, and approve or reject driver incentive bonuses to a new technology stack built on the React and Node web frameworks.<p/>\
+            <p>	Utilized test driven development to incrementally prototype, test, and deploy features and fixes in a timely manner.<p/>",
+          externalLinks: [
+          ],
+        },
+        {
+          imageUrl: "/Static/Images/{Experience}SayKidLogoWhiteBG[Small].jpeg",
+          mainTitle: "SayKid: Software Development Intern",
+          tags: ["WordPress.Org", "PHP", "Web Development"],
+          teamMates: [],
+          description:
+            "<p>Developed an online subscription model for access to SayKid’s voice enabled, play-based learning platform<p/>\
+            <p>Redesigned the company’s website to be more responsive, visually appealing and intuitive<p/>",
+          externalLinks: [
+          ],
+        }
+      ],
       activities: [
         {
           imageUrl: "/Static/Images/{Activity}MacHackMeeting[Small].jpg",
@@ -345,9 +382,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   height: 100%;
-
+  
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
   scroll-behavior: smooth;
   max-height: 100vh;
 }
@@ -365,7 +403,6 @@ body {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 70px;
-  /* top: -80px; */
   width: 100%;
   transition: top 0.3s;
   z-index: 5;
@@ -463,18 +500,21 @@ body {
 }
 .about-me-section {
   background-color: #1b2234;
-  position: sticky;
   top: 0;
   display: flex;
+  position: sticky;
+}
+.experience-section {
+  background-color: #212a40;
 }
 .project-section {
-  background-color: #212a40;
-}
-.activities-section {
   background-color: #1b2234;
 }
-.contact-section {
+.activities-section {
   background-color: #212a40;
+}
+.contact-section {
+  background-color: #1b2234;
 }
 .left-side-spacer {
   flex: 2;
@@ -518,6 +558,7 @@ body {
   align-items: center;
   width: 1100px;
   margin: 50px 0;
+  z-index: 1;
 }
 .vertical-text-container {
   max-width: min-content;
@@ -532,7 +573,6 @@ body {
   background-color: #131824;
   scroll-snap-align: end;
   position: sticky;
-  /* position: relative; */
   height: 250px;
   box-shadow: 0 -5px 80px rgba(0, 239, 171, 50%);
 }
@@ -616,13 +656,8 @@ body {
     position: unset;
     top: unset;
   }
-  .project-section {
-    background-color: #1b2234;
-  }
-  .contact-section {
-    background-color: #1b2234;
-  }
   .stacking-slide {
+    background-color: #1b2234;
     scroll-snap-align: unset;
     height: unset;
     position: unset;
@@ -640,5 +675,7 @@ body {
     scroll-snap-align: none;
     box-shadow: none;
   }
+
+
 }
 </style>

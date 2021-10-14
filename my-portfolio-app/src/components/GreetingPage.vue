@@ -27,6 +27,9 @@
               <a href="#about-me-section">About Me</a>
             </div>
             <div>
+              <a href="#experience-section">Experience</a>
+            </div>
+            <div>
               <a href="#project-section">Project</a>
             </div>
             <div>
@@ -35,6 +38,7 @@
             <div>
               <a href="#contact-section">Contact</a>
             </div>
+            
           </div>
           <div class="contact-info">
             <a
@@ -132,13 +136,14 @@ export default {
 .box-nav-panel {
   display: flex;
   flex-direction: column;
+  gap: 0.9em;
 
   background-color: #162038;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   align-self: stretch;
   margin: 0 25px 25px 25px;
-  padding: 30px;
+  padding: 1.2em 2em;
 
   position: absolute;
   width: 40%;
@@ -147,6 +152,9 @@ export default {
   right: 7%;
   bottom: 100px;
 }
+.box-nav-panel > * { 
+  margin: 0;
+}
 .GreetingMedium .box-nav-panel {
   display: none;
 }
@@ -154,6 +162,7 @@ export default {
   position: unset;
   width: unset;
   display: flex;
+  max-height: 35%;
   min-height: 30%;
   max-width: unset;
   min-width: unset;
@@ -164,11 +173,9 @@ export default {
   font-weight: 900;
   text-align: start;
   color: #00efab;
-  margin-top: 0;
 }
 .introduction {
   border-left: 5px solid #00efab;
-  margin-bottom: 0.83em;
 }
 .GreetingSmall .introduction {
   display: none;
@@ -176,7 +183,7 @@ export default {
 .introduction >>> p {
   font-family: "Courier Prime", monospace;
   font-weight: 400;
-  font-size: 1.9vh;
+  font-size: 1.7vh;
   text-align: left;
   color: #fff;
   margin: 10px 0 2px 10px;
@@ -216,29 +223,37 @@ export default {
 .nav-btns {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   flex: 1;
+  min-height: 0;
+  gap:1em;
 }
 .nav-btns div {
   width: 45%;
-  padding: 10px 0;
+  padding: min(0.8em, 2vw) 0;
   border: 2px solid #00ddee;
   border-radius: 5px;
   color: #00ddee;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
+.GreetingSmall .nav-btns div {
+  padding: min(1.3em, 2vw) 0;
+}
 .nav-btns a {
   text-decoration: none;
   color: #00ddee;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: min(1.3em, 5vw);
+  font-size: min(1em, 4vw);
   font-weight: 700;
   text-align: center;
-  line-height: min(1.3em, 5vw);
+  line-height: min(1.3em, 4vw);
+}
+.GreetingSmall .nav-btns a {
+  font-size: min(1.3em, 4vw);
 }
 .nav-btns a:hover {
   text-decoration: none;
@@ -249,10 +264,9 @@ export default {
 .contact-info {
   display: flex;
   justify-content: flex-start;
-  margin-top: 15px;
 }
 .contact-info img {
-  height: 4vh;
+  height: 3.5vh;
   margin-right: 25px;
 }
 
@@ -309,7 +323,8 @@ export default {
 }
 .GreetingSmall .Grt-bkg-image {
   width: 100%;
-  height: 60%;
+  /* height: max(100vw, 65%); */
+  height: clamp(60%, 200vw,70%);
   min-width: 0;
   left: 0;
   top: 0;

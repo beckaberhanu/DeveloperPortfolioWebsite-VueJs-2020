@@ -123,7 +123,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 300px;
+  min-width: 22em;
   margin-right: 30px;
 }
 .OrgInfoTileSmall .title-and-nav {
